@@ -1,0 +1,37 @@
+body {
+    background-image: url(./images/background_image.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    fill-opacity: 0.5%;
+}
+
+.nav a {
+    font-size: 24px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 8px black;
+}
+
+#welcome-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#intro-text {
+    text-align: center;
+    width: auto;
+    height: auto;
+    margin-top: 10%;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: 50px;
+    line-height: 45px;
+    text-shadow: 2px 2px 8px black;
+}
+
+#starting-btn {
+    position: relative;
+    text-align: center;
+    margin-top: 3%;
+}
