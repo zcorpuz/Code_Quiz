@@ -1,11 +1,6 @@
-// Create variables for elements that we will use in the HTML
-
-var startBtn = document.querySelector(".btn");
-var quizDiv = document.getElementById("quiz");
-
 // Create 5 questions in an array utilizing objects
 
-var questions = [
+var questionsList = [
     {
         question: "What Element allows you to create text in HTML?",
         choices: ["<p> element", "<br> element", "<createText> element", "<t> element"],
@@ -31,18 +26,41 @@ var questions = [
         choices: [".splice()", ".remove()", ".trim()", ".reduce()"],
         answer: 2
     }
-];
+]; 
 
-// Create variable for User Score
+// Create variables
 
 var userScore = 0;
+var timeLeft = 60;
+var timer = document.getElementById("timer");
+var startBtn = document.getElementById("quizBtn");
+var answer;
+var welcomeDiv = document.getElementById("welcome-container");
+var quizDiv = document.getElementById("quiz");
 
-// Click Event Listener that starts a 60 second timer and displays first message
 
-// If user gets correct answer, add 1 to the User Score and display next question. If user gets wrong answer, subtract 10 seconds from time and display next question
 
-// When the user answers all questions || time runs out, then show score to user with a space to input their initials.
+startBtn.addEventListener("click", function() {
+    setTimer();
+    displayQuestions();
+    welcomeDiv.className = "d-none";
+})
 
-// Log user input of initials and score to highScores.html page and local storage
+function setTimer() {
+    var timeRemaining = setInterval(function() {
+        timeLeft--;
+        timer.textContent = timeLeft;
+        if (timeLeft === 0) {
+            clearInterval(timeRemaining);
+        }
+    }, 1000);
+}
 
-// userScores should be brought up everytime user accesses website
+function displayQuestions() {
+    for (var i = 0; i < questionsList.length; i++) {
+        quizDiv.textContent = questionsList[i].question;
+    }
+}
+
+
+

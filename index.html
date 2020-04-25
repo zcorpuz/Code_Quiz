@@ -14,9 +14,6 @@
     <!-- CSS StyleSheet -->
     <link rel="stylesheet" href="assets/style.css">
 
-    <!-- JS Link -->
-    <link rel="javascript" href="/script.js">
-
 </head>
 <body>
 
@@ -26,6 +23,8 @@
             <a class="nav-item nav-link active" href="index.html">Home</a>
             <a class="nav-item nav-link" href="highScores.html">High Scores</a>
         </nav>
+
+        <span id="timer" class="float-right mr-2"></span>
     </header>
     
     <!-- Welcome Prompt Container-->
@@ -40,11 +39,15 @@
 
         <!-- Starting Button -->
         <div id="starting-btn">
-            <button type="button" class="btn btn-primary btn-lg">Start Quiz!</button>
+            <button type="button" id="quizBtn" class="btn btn-primary btn-lg">Start Quiz!</button>
         </div>
     </div>
 
     <!-- Div container for Quiz Questions -->
     <div id="quiz"></div>
+
+    <!-- JS Link -->
+    <script rel="javascript" src="script.js"></script> 
+
 </body>
 </html>
