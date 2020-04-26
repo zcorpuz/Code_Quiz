@@ -4,27 +4,27 @@ var questionsList = [
     {
         question: "What Element allows you to create text in HTML?",
         choices: ["<p> element", "<br> element", "<createText> element", "<t> element"],
-        answer: 0
+        answer: "<p> element"
     },
     {
         question: "How do you create a single, horizontal line in HTML that goes across your whole page?",
         choices: ["<ln> element", "<dash> element", "<hr> element", "<line> element"],
-        answer: 2
+        answer: "<hr> element"
     },
     {
         question: "What does CSS stand for?",
         choices: ["Cascading Style Script", "Cascading Style Sheet", "Cascading Selector Sheet", "None of these"],
-        answer: 1
+        answer: "Cascading Style Sheet"
     },
     {
         question: "Which data type has only 2 values: 'True' or 'False'?",
         choices: ["String", "Symbol", "Null", "Boolean"],
-        answer: 3
+        answer: "Boolean"
     },
     {
         question: "What method removes whitespace from both sides of a string but does not change the original string?",
         choices: [".splice()", ".remove()", ".trim()", ".reduce()"],
-        answer: 2
+        answer: ".trim()"
     }
 ]; 
 
@@ -32,11 +32,16 @@ var questionsList = [
 
 var userScore = 0;
 var timeLeft = 60;
+var i = 0;
 var timer = document.getElementById("timer");
 var startBtn = document.getElementById("quizBtn");
-var answer;
 var welcomeDiv = document.getElementById("welcome-container");
 var quizDiv = document.getElementById("quiz");
+var choiceDiv = document.getElementById("choiceDiv");
+var buttonA = document.getElementById("buttonA");
+var buttonB = document.getElementById("buttonB");
+var buttonC = document.getElementById("buttonC");
+var buttonD = document.getElementById("buttonD");
 
 
 
@@ -44,8 +49,11 @@ startBtn.addEventListener("click", function() {
     setTimer();
     displayQuestions();
     welcomeDiv.className = "d-none";
+    choiceDiv.className = "d-block center mt-10"
+
 })
 
+// Function for Timer at 60 seconds
 function setTimer() {
     var timeRemaining = setInterval(function() {
         timeLeft--;
@@ -56,11 +64,77 @@ function setTimer() {
     }, 1000);
 }
 
+// Function to display question
 function displayQuestions() {
-    for (var i = 0; i < questionsList.length; i++) {
-        quizDiv.textContent = questionsList[i].question;
-    }
+    quizDiv.textContent = questionsList[i].question;
+    buttonA.textContent = questionsList[i].choices[0];
+    buttonB.textContent = questionsList[i].choices[1];
+    buttonC.textContent = questionsList[i].choices[2];
+    buttonD.textContent = questionsList[i].choices[3];
 }
 
+buttonA.addEventListener("click", function(event) {
+    event.stopPropagation();
+    var emptyString = "";
+    emptyString = questionsList[i].answer;
+    console.log(event.target.textContent);
+    if (i < questionsList.length - 1) {
+        i++;
+    }
+    if (event.target.textContent === emptyString) {
+        displayQuestions();
+        userScore++;
+    } else {
+        displayQuestions();
+    }
+});
 
+buttonB.addEventListener("click", function(event) {
+    event.stopPropagation();
+    var emptyString = "";
+    emptyString = questionsList[i].answer;
+    console.log(event.target.textContent);
+    if (i < questionsList.length - 1) {
+        i++;
+    }
+    if (event.target.textContent === emptyString) {
+        displayQuestions();
+        userScore++;
+    } else {
+        displayQuestions();
+    }
+});
 
+buttonC.addEventListener("click", function(event) {
+    event.stopPropagation();
+    var emptyString = "";
+    emptyString = questionsList[i].answer;
+    console.log(event.target.textContent);
+    if (i < questionsList.length - 1) {
+        i++;
+    }
+    if (event.target.textContent === emptyString) {
+        displayQuestions();
+        userScore++;
+    } else {
+        displayQuestions();
+    }
+});
+
+buttonD.addEventListener("click", function(event) {
+    event.stopPropagation();
+    var emptyString = "";
+    emptyString = questionsList[i].answer;
+    console.log(event.target.textContent);
+    if (i < questionsList.length - 1) {
+        i++;
+    }
+    if (event.target.textContent === emptyString) {
+        displayQuestions();
+        userScore++;
+    } else {
+        displayQuestions();
+    }
+});
+
+console.log(userScore);
