@@ -31,7 +31,7 @@ var questionsList = [
 // Create variables
 
 var userScore = 0;
-var timeLeft = 60;
+var timeLeft = 30;
 var i = 0;
 var timer = document.getElementById("timer");
 var startBtn = document.getElementById("quizBtn");
@@ -51,15 +51,16 @@ startBtn.addEventListener("click", function() {
     welcomeDiv.className = "d-none";
     choiceDiv.className = "d-block center mt-10"
 
-})
+});
 
-// Function for Timer at 60 seconds
+// Function for Timer at 30 seconds
 function setTimer() {
     var timeRemaining = setInterval(function() {
         timeLeft--;
         timer.textContent = timeLeft;
         if (timeLeft === 0) {
             clearInterval(timeRemaining);
+            endGame();
         }
     }, 1000);
 }
@@ -77,7 +78,6 @@ buttonA.addEventListener("click", function(event) {
     event.stopPropagation();
     var emptyString = "";
     emptyString = questionsList[i].answer;
-    console.log(event.target.textContent);
     if (i < questionsList.length - 1) {
         i++;
     }
@@ -86,6 +86,7 @@ buttonA.addEventListener("click", function(event) {
         userScore++;
     } else {
         displayQuestions();
+        timeLeft -= 5;
     }
 });
 
@@ -93,7 +94,6 @@ buttonB.addEventListener("click", function(event) {
     event.stopPropagation();
     var emptyString = "";
     emptyString = questionsList[i].answer;
-    console.log(event.target.textContent);
     if (i < questionsList.length - 1) {
         i++;
     }
@@ -102,6 +102,7 @@ buttonB.addEventListener("click", function(event) {
         userScore++;
     } else {
         displayQuestions();
+        timeLeft -= 5;
     }
 });
 
@@ -109,7 +110,6 @@ buttonC.addEventListener("click", function(event) {
     event.stopPropagation();
     var emptyString = "";
     emptyString = questionsList[i].answer;
-    console.log(event.target.textContent);
     if (i < questionsList.length - 1) {
         i++;
     }
@@ -118,6 +118,7 @@ buttonC.addEventListener("click", function(event) {
         userScore++;
     } else {
         displayQuestions();
+        timeLeft -= 5;
     }
 });
 
@@ -134,7 +135,44 @@ buttonD.addEventListener("click", function(event) {
         userScore++;
     } else {
         displayQuestions();
+        timeLeft -= 5;
     }
 });
 
-console.log(userScore);
+var initials = "";
+
+function endGame() {
+    if (timeLeft === 0) {
+        initials = alert("Good Game. Your score is " + userScore + ". Please head to High Score tab and enter your initials and score provided.");
+    }
+}
+
+var quizScore = document.getElementById("#quizScore");
+var scoreForm = document.getElementById("#score-form");
+var scoreList = document.getElementById("#score-list");
+var scoreArray = [];
+
+function renderScores () {
+    scoreList.innerHTML = "";
+
+    for (var j = 0; j < scoreArray.length; j++) {
+        var array = scoreArray[j];
+
+        var li = document.createElement("li");
+        li.textContent = array;
+        li.setAttribute("data-index", j);
+
+        scoreList.appendChild(li);
+    }
+}
+
+scoreForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var scoreText = quizScore.nodeValue.trim();
+
+    scoreArray.push(quizScore);
+    quizScore.value = "";
+
+    renderScores();
+});
